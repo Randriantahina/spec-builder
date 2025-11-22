@@ -38,6 +38,10 @@ class ProjectsTable
                 //
             ])
             ->recordActions([
+                \Filament\Actions\Action::make('spec')
+                    ->label('Spécification')
+                    ->icon('heroicon-o-document-text')
+                    ->url(fn ($record) => \App\Filament\Pages\ProjectSpecBuilder::getUrl(['projectId' => $record->id])),
                 EditAction::make(),
                 DeleteAction::make(),
             ])

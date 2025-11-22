@@ -13,6 +13,8 @@ class SpecificationPage extends Model
     protected $fillable = [
         'project_id',
         'title',
+        'slug',
+        'order',
         'content',
     ];
 
@@ -24,4 +26,9 @@ class SpecificationPage extends Model
     {
         return $this->belongsTo(Project::class);
     }
-};
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('order')->orderBy('created_at');
+    }
+}
