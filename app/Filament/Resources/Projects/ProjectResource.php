@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\Projects;
 
-use App\Filament\Resources\Projects\Pages\CreateProject;
 use App\Filament\Resources\Projects\Pages\EditProject;
 use App\Filament\Resources\Projects\Pages\ListProjects;
 use App\Filament\Resources\Projects\Schemas\ProjectForm;
 use App\Filament\Resources\Projects\Tables\ProjectsTable;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Project;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -17,6 +17,8 @@ use Filament\Tables\Table;
 class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
+
+    protected static ?string $navigationLabel = 'Projets';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
@@ -41,7 +43,7 @@ class ProjectResource extends Resource
     {
         return [
             'index' => ListProjects::route('/'),
-            'create' => CreateProject::route('/create'),
+            'create' => \App\Filament\Resources\Projects\Pages\CreateProject::route('/create'),
             'edit' => EditProject::route('/{record}/edit'),
         ];
     }

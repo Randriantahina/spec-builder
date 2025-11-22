@@ -18,7 +18,9 @@ class SpecificationPageResource extends Resource
 {
     protected static ?string $model = SpecificationPage::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?string $navigationLabel = 'Spécifications';
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 
     public static function form(Schema $schema): Schema
     {
@@ -42,6 +44,7 @@ class SpecificationPageResource extends Resource
         return [
             'index' => ListSpecificationPages::route('/'),
             'create' => CreateSpecificationPage::route('/create'),
+            'builder' => \App\Filament\Resources\SpecificationPages\Pages\BuilderSpecificationPage::route('/{record}/builder'),
             'edit' => EditSpecificationPage::route('/{record}/edit'),
         ];
     }
